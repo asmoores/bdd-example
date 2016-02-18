@@ -1,0 +1,65 @@
+apply plugin: 'java'
+apply plugin: 'groovy'
+apply plugin: 'net.serenity-bdd.aggregator'
+
+repositories {
+    mavenCentral()
+}
+
+buildscript {
+    repositories {
+        mavenLocal()
+        jcenter()
+    }
+    dependencies {
+        classpath("net.serenity-bdd:serenity-gradle-plugin:1.1.1")
+    }
+}
+
+def cucumberVersion = "1.2.4"
+
+//configurations {
+//    cucumberRuntime {
+//        extendsFrom testRuntime
+//    }
+//}
+//
+//task acceptanceTests() {
+//    doLast {
+//        javaexec {
+//            main = "cucumber.api.cli.Main"
+//            classpath = configurations.cucumberRuntime
+//            args = [
+//                    '--plugin',
+//                    'pretty',
+//                    '--glue',
+//                    'src/test/groovy/bdd/cucumber/steps',
+////                    '--tags',
+////                    '@beingdeveloped',
+//                    'src/test/resources/executable-specifications/'
+//            ]
+//        }
+//    }
+//}
+
+//test.dependsOn acceptanceTests
+
+dependencies {
+    testCompile 'org.codehaus.groovy:groovy-all:2.4.3'
+    testCompile "info.cukes:cucumber-junit:$cucumberVersion"
+    testCompile "info.cukes:cucumber-groovy:$cucumberVersion"
+    testCompile 'org.codehaus.groovy.modules.http-builder:http-builder:0.7'
+
+    // ++ Serenity BDD
+    testCompile 'net.serenity-bdd:serenity-core:1.1.26'
+    testCompile 'net.serenity-bdd:serenity-junit:1.1.26'
+    testCompile 'net.serenity-bdd:serenity-cucumber:1.1.5'
+
+    testCompile('junit:junit:4.12')
+
+    testCompile('org.assertj:assertj-core:1.7.0')
+    testCompile('org.slf4j:slf4j-simple:1.7.7')
+    // -- Serenity BDD
+}
+
+gradle.startParameter.continueOnFailure = true
