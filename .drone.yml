@@ -1,8 +1,6 @@
-pipeline:
-
-  buiid:
-    image: java:8-jdk
-    commands:
-      - ./gradlew build
-    when:
-      event: [push]
+build:
+  image: java:openjdk-7
+  environment:
+    - GRADLE_USER_HOME=~/.gradle
+  commands:
+    - ./gradlew test
