@@ -4,6 +4,6 @@ pipeline:
   build:
     image: java:8-jdk
     commands:
-      - ./gradlew build
+      - ./gradlew clean test aggregate
     when:
       event: [push]
