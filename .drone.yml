@@ -4,5 +4,3 @@ pipeline:
     image: java:8-jdk
     commands:
       - ./gradlew build
-    when:
-      event: [push]
