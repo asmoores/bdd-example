@@ -1,6 +1,5 @@
 pipeline:
 
-
   build:
     image: java:8-jdk
     commands:
